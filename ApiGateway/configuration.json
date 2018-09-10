@@ -1,0 +1,101 @@
+﻿{
+  "ReRoutes": [
+
+// Ticket Management Routing
+    //get all tickets
+    {
+      "DownstreamPathTemplate": "/api/tickets",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    // get specific ticket
+    {
+      "DownstreamPathTemplate": "/api/tickets/detail/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/detail/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    // get ticket count
+    {
+      "DownstreamPathTemplate": "/api/tickets/count",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/count",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    // get ticket status
+    {
+      "DownstreamPathTemplate": "/api/tickets/status/{status}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/status",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //get ticket status based on filter status
+    {
+      "DownstreamPathTemplate": "/api/tickets/filter?{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/filter?{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    // post ticket details
+    {
+      "DownstreamPathTemplate": "/api/tickets/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    // put ticket details
+    {
+      "DownstreamPathTemplate": "/api/tickets/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}
