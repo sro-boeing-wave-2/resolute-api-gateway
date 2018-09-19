@@ -1,14 +1,14 @@
 ﻿{
   "ReRoutes": [
 
-// Ticket Management Routing
+    // Ticket Management Routing
     //get all tickets
     {
       "DownstreamPathTemplate": "/api/tickets",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
@@ -21,7 +21,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
@@ -34,7 +34,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
@@ -47,7 +47,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
@@ -60,7 +60,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
@@ -73,7 +73,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
@@ -86,12 +86,24 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "35.189.155.116",
           "Port": 8083
         }
       ],
       "UpstreamPathTemplate": "/{id}",
       "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "35.189.155.116",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/login",
+      "UpstreamHttpMethod": [ "Post" ]
     }
   ],
   "GlobalConfiguration": {

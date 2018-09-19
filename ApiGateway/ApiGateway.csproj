@@ -9,8 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="JWT" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Ocelot.Cache.CacheManager" Version="0.1.0" />
+    <PackageReference Include="Stark.NewtonsoftJsonSerializer" Version="1.2.1" />
   </ItemGroup>
 
 </Project>
