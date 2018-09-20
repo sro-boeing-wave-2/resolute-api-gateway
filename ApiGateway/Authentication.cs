@@ -32,24 +32,37 @@ namespace ApiGateway
             if (httpContext.Request.Headers.ContainsKey("token"))
             {
                 string secretkey = "";
+                Chilkat.Jwt jwt = new Chilkat.Jwt();
                 var client = new ConsulClient();
                 var getPair = await client.KV.Get("secretkey");
-                if (getPair.Response != null)
-                {
-                    Console.WriteLine("Getting Back the Stored String");
-                    secretkey = Encoding.UTF8.GetString(getPair.Response.Value, 0, getPair.Response.Value.Length);
-                }
+
+
+                //if (getPair.Response != null)
+                //{
+                //    Console.WriteLine("Getting Back the Stored String");
+                //    secretkey = Encoding.UTF8.GetString(getPair.Response.Value, 0, getPair.Response.Value.Length);
+                //}
+
+
+                //Chilkat.Global glob = new Chilkat.Global();
+                //glob.UnlockBundle("Anything for 30-day trial");
                 string token = httpContext.Request.Headers["token"].ToString();
-                IJsonSerializer serializer = new JsonNetSerializer();
-                IDateTimeProvider provider = new UtcDateTimeProvider();
-                IJwtValidator validator = new JwtValidator(serializer, provider);
-                IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
-                IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder);
+
+                //IJsonSerializer serializer = new JsonNetSerializer();
+                //IDateTimeProvider provider = new UtcDateTimeProvider();
+                //IJwtValidator validator = new JwtValidator(serializer, provider);
+                //IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+                //IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder);
+                Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
+                rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));            
+                Console.WriteLine(jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj()));
+               // ResponseHeaders decodedHeaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(token));
+                
                 try
                 {
-                    var json = decoder.Decode(token, secretkey, verify: true);
-                    Console.Write("Decoded token: " + json);
-                    ResponseHeaders decodedHeaders = JsonConvert.DeserializeObject<ResponseHeaders>(json);
+                    //var json = decoder.Decode(token, secretkey, verify: true);
+                    //Console.Write("Decoded token: " + json);
+                    ResponseHeaders decodedHeaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(token));
                     Console.Write("Decoded headers: " + decodedHeaders);
                     httpContext.Request.Headers.Add("agentid", decodedHeaders.Agentid.ToString());
                     httpContext.Request.Headers.Add("name", decodedHeaders.Name);
@@ -63,7 +76,7 @@ namespace ApiGateway
                 catch
                 {
                     httpContext.Response.Headers.Add("Error", "Couldnt decode");
-                    httpContext.Response.StatusCode = 403;
+                    httpContext.Response.StatusCode = 401;
                     throw new UnauthorizedAccessException();
                     // httpContext.Response.StatusCode = 403;
                     // return Task.FromResult(0);
