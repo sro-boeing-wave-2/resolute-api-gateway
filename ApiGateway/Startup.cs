@@ -8,15 +8,9 @@ using CacheManager.Core;
 using Ocelot.Cache.CacheManager;
 using Microsoft.Extensions.Logging;
 using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
-using Microsoft.AspNetCore.Http;
-using Consul;
 using System;
-using System.Text;
-using JWT;
-using JWT.Serializers;
-using Newtonsoft.Json;
 using ApiGateway.Models;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ApiGateway
 {
@@ -55,6 +49,7 @@ namespace ApiGateway
                              .WithDictionaryHandle();
                          });
             }
+            //services.AddSignalR();
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -62,6 +57,37 @@ namespace ApiGateway
             app.UseCors("AllowSpecificOrigin");
             app.UseMiddleware(typeof(ErrorHandler));
             app.UseAuthentication();
+
+
+            //app.Use(async (context, next) => {
+            //    if (context.Request.Headers.ContainsKey("token"))
+            //    {
+            //        Chilkat.Global glob = new Chilkat.Global();
+            //        glob.UnlockBundle("Anything for 30-day trial");
+
+            //        Chilkat.Jwt jwt = new Chilkat.Jwt();
+
+            //        string token = context.Request.Headers["token"].ToString();
+            //     ResponseHeaders decodedHeaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(context.Request.Headers["token"]));
+            //        context.Response.Headers.Add("name", decodedHeaders.Name);
+            //        }
+            //    else
+            //    {
+            //        if (context.Request.Path.ToString() == "/login")
+            //        {
+            //            context.Response.Headers.Add("Path", "InEncoding");
+            //        }
+            //        else
+            //        {
+            //           context.Response.Headers.Add("Path", "somethingelse");
+            //          context.Response.StatusCode = 401;
+            //            throw new UnauthorizedAccessException();
+            //        }
+            //        context.Response.Headers.Add("Path", "somethingelse");
+            //    }
+            //    await next();
+            //});
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 app.UseOcelot().Wait();
             }
