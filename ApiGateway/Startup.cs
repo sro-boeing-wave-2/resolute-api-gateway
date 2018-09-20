@@ -39,8 +39,14 @@ namespace ApiGateway
             // This method gets called by the runtime. Use this method to add services to the container.
             public void ConfigureServices(IServiceCollection services)
             {
-                
-                services.AddOcelot(Configuration)
+            services.AddCors(o => o.AddPolicy("AllowSpecificOrigin", builder =>
+                     builder.AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin()
+                         )
+
+             );
+            services.AddOcelot(Configuration)
                          .AddCacheManager(x => {
                              x.WithMicrosoftLogging(log =>
                              {
@@ -53,7 +59,7 @@ namespace ApiGateway
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
             {
-
+            app.UseCors("AllowSpecificOrigin");
             app.UseMiddleware(typeof(ErrorHandler));
             app.UseAuthentication();
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
