@@ -51,12 +51,13 @@ namespace ApiGateway
                     Console.Write("Decoded token: " + json);
                     ResponseHeaders decodedHeaders = JsonConvert.DeserializeObject<ResponseHeaders>(json);
                     Console.Write("Decoded headers: " + decodedHeaders);
-                    httpContext.Request.Headers.Add("agentId", decodedHeaders.Agentid.ToString());
+                    httpContext.Request.Headers.Add("agentid", decodedHeaders.Agentid.ToString());
                     httpContext.Request.Headers.Add("name", decodedHeaders.Name);
-                    httpContext.Request.Headers.Add("profileImageUrl", decodedHeaders.Profileimageurl);
-                    httpContext.Request.Headers.Add("organisationId", decodedHeaders.Organisationid.ToString());
-                    httpContext.Request.Headers.Add("departmentName", decodedHeaders.Departmentname);
-                    httpContext.Request.Headers.Add("organisationName", decodedHeaders.Organisationname);
+                    httpContext.Request.Headers.Add("profileimageurl", decodedHeaders.Profileimageurl);
+                    httpContext.Request.Headers.Add("organisationid", decodedHeaders.Organisationid.ToString());
+                    httpContext.Request.Headers.Add("departmentname", decodedHeaders.Departmentname);
+                    httpContext.Request.Headers.Add("organisationname", decodedHeaders.Organisationname);
+                    httpContext.Request.Headers.Add("email", decodedHeaders.Email);
                     httpContext.Response.Headers.Remove("token");
                 }
                 catch
