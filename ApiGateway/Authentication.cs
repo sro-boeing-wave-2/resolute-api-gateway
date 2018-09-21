@@ -26,8 +26,12 @@ namespace ApiGateway
                 glob.UnlockBundle("anything for 30-day trial");
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
                 string token = httpContext.Request.Headers["token"].ToString();
-                
-                   // var getPair = await client.KV.Get("publickey");
+                //using (var client = new ConsulClient())
+                //{
+                //    client.Config.Address = new Uri("35.221.125.153:8500");
+                //    var getPair = await client.KV.Get("publickey");
+                    
+                    // var getPair = await client.KV.Get("publickey");
                     //Console.WriteLine("public key from consul " + Encoding.UTF8.GetString(getPair.Response.Value));
                     Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
                     rsaPublicKey.ImportPublicKey(publickey);
@@ -52,7 +56,7 @@ namespace ApiGateway
                         throw new UnauthorizedAccessException();
 
                     }
-                
+               // }
             }
             else
             {
