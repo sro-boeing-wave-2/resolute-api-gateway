@@ -21,16 +21,16 @@ namespace ApiGateway
         {
             if (httpContext.Request.Headers.ContainsKey("token"))
             {
+                string publickey = "<RSAPublicKey><Modulus>5QooqrD6rqxdXTH7XxLYm0rF2uLFTZZAqv1lMcRvNEr7kmvkNEN+NH6soK1/1v5DI6xHwKAHKyi323XrjH7jIrkjHl5RF09nicutCvL0cFiwSCTfWzmIwbAI3z4J09b2lzml44IautLjk18LnRM4fZbpZdzmkd/UmvgOzREvxUU=</Modulus><Exponent>AQAB</Exponent></RSAPublicKey>";
                 Chilkat.Global glob = new Chilkat.Global();
                 glob.UnlockBundle("anything for 30-day trial");
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
                 string token = httpContext.Request.Headers["token"].ToString();
-                using (var client = new ConsulClient())
-                {
-                    var getPair = await client.KV.Get("publickey");
-                    Console.WriteLine("public key from consul " + Encoding.UTF8.GetString(getPair.Response.Value));
+                
+                   // var getPair = await client.KV.Get("publickey");
+                    //Console.WriteLine("public key from consul " + Encoding.UTF8.GetString(getPair.Response.Value));
                     Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
-                    rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
+                    rsaPublicKey.ImportPublicKey(publickey);
                     var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
                     if (isTokenVerified)
                     {
@@ -52,7 +52,7 @@ namespace ApiGateway
                         throw new UnauthorizedAccessException();
 
                     }
-                }
+                
             }
             else
             {
