@@ -28,7 +28,7 @@ namespace ApiGateway
                 using (var client = new ConsulClient())
                 {
                     var getPair = await client.KV.Get("publickey");
-                    Console.WriteLine(Encoding.UTF8.GetString(getPair.Response.Value));
+                    Console.WriteLine("public key from consul " + Encoding.UTF8.GetString(getPair.Response.Value));
                     Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
                     rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
                     var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
