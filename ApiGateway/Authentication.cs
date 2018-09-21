@@ -24,9 +24,9 @@ namespace ApiGateway
                 Chilkat.Global glob = new Chilkat.Global();
                 glob.UnlockBundle("anything for 30-day trial");
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
-                    string token = httpContext.Request.Headers["token"].ToString();
-                    Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
-                        ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
+                string token = httpContext.Request.Headers["token"].ToString();
+                Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
+                ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
                         httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
                         httpContext.Request.Headers.Add("name", "decodedheaders.name");
                         httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
