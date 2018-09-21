@@ -1,15 +1,10 @@
-﻿
-using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System;
 using System.Text;
-using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Consul;
 using Microsoft.AspNetCore.Builder;
-using Newtonsoft.Json.Linq;
 using ApiGateway.Models;
 
 namespace ApiGateway
@@ -29,17 +24,34 @@ namespace ApiGateway
                 Chilkat.Global glob = new Chilkat.Global();
                 glob.UnlockBundle("anything for 30-day trial");
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
-                string token = httpContext.Request.Headers["token"].ToString();                
-                ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));                
-                    httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
-                    httpContext.Request.Headers.Add("name", "decodedheaders.name");
-                    httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
-                    httpContext.Request.Headers.Add("organisationid", decodedheaders.Organisationid.ToString());
-                    httpContext.Request.Headers.Add("departmentname", decodedheaders.Departmentname);
-                    httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
-                    httpContext.Request.Headers.Add("email", decodedheaders.Email);
-                    httpContext.Request.Headers.Remove("token");
-               
+                using (var client = new ConsulClient())
+                {
+                    var getPair = await client.KV.Get("secretkey");
+                    string token = httpContext.Request.Headers["token"].ToString();
+                    Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
+                    rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
+                    var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
+                    if (isTokenVerified)
+                    {
+                        ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
+                        httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
+                        httpContext.Request.Headers.Add("name", "decodedheaders.name");
+                        httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
+                        httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
+                        httpContext.Request.Headers.Add("departmentname", decodedheaders.Departmentname);
+                        httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
+                        httpContext.Request.Headers.Add("email", decodedheaders.Email);
+                        httpContext.Request.Headers.Remove("token");
+                    }
+
+                    else
+                    {
+                        httpContext.Response.Headers.Add("error", "NotAuthorised");
+                        httpContext.Response.StatusCode = 401;
+                        throw new UnauthorizedAccessException();
+                    }
+                }
+                await _next(httpContext);
             }
             else
             {
@@ -50,17 +62,15 @@ namespace ApiGateway
                     throw new UnauthorizedAccessException();
                 }
             }
-            await _next(httpContext);
         }
     }
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class AuthenticationExtensions
-    {
-        public static IApplicationBuilder UseAuthentication(this IApplicationBuilder builder)
+        // Extension method used to add the middleware to the HTTP request pipeline.
+        public static class AuthenticationExtensions
         {
-            return builder.UseMiddleware<Authentication>();
+            public static IApplicationBuilder UseAuthentication(this IApplicationBuilder builder)
+            {
+                return builder.UseMiddleware<Authentication>();
+            }
         }
     }
-
-}
