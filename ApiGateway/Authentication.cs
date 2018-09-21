@@ -25,8 +25,15 @@ namespace ApiGateway
                 glob.UnlockBundle("anything for 30-day trial");
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
                 string token = httpContext.Request.Headers["token"].ToString();
-                Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
-                ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
+                using (var client = new ConsulClient())
+                {
+                    var getPair = await client.KV.Get("publickey");
+                    Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
+                    rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
+                    var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
+                    if (isTokenVerified)
+                    {
+                        ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
                         httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
                         httpContext.Request.Headers.Add("name", "decodedheaders.name");
                         httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
@@ -35,7 +42,16 @@ namespace ApiGateway
                         httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
                         httpContext.Request.Headers.Add("email", decodedheaders.Email);
                         httpContext.Request.Headers.Remove("token");
-                await _next(httpContext);
+                        await _next(httpContext);
+                    }
+                    else
+                    {
+                        httpContext.Response.Headers.Add("error", "NotAuthorised");
+                        httpContext.Response.StatusCode = 401;
+                        throw new UnauthorizedAccessException();
+
+                    }
+                }
             }
             else
             {
