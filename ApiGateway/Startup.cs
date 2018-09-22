@@ -11,6 +11,7 @@ using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBui
 using System;
 using ApiGateway.Models;
 using Newtonsoft.Json;
+using Ocelot.Provider.Consul;
 
 namespace ApiGateway
 {
@@ -47,7 +48,7 @@ namespace ApiGateway
                                  log.AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
                              })
                              .WithDictionaryHandle();
-                         });
+                         }).AddConsul();
             }
             //services.AddSignalR();
 
