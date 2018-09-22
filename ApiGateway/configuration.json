@@ -7,12 +7,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+          // "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -20,12 +21,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/analytics",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/analytics",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -33,12 +35,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/detail/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/detail/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -46,12 +49,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/count",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/count",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -59,12 +63,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/status/{status}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/status/{status}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -72,12 +77,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/filter?{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/filter?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -85,12 +91,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/analytics/update",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/analytics/update",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -99,12 +106,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -112,12 +120,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/updatecomment",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/updatecomment",
       "UpstreamHttpMethod": [ "Put" ]
     },
@@ -125,12 +134,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/{id}",
       "UpstreamHttpMethod": [ "Put" ]
     },
@@ -138,12 +148,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/status",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/status",
       "UpstreamHttpMethod": [ "Put" ]
     },
@@ -151,12 +162,13 @@
     {
       "DownstreamPathTemplate": "/api/tickets/priority",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8083
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8083
+      //   }
+      // ],
+      "ServiceName": "Ticket-Management",
       "UpstreamPathTemplate": "/tickets/priority",
       "UpstreamHttpMethod": [ "Put" ]
     },
@@ -166,12 +178,13 @@
     {
       "DownstreamPathTemplate": "/api/Auth/login",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8081
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8081
+      //   }
+      // ],
+      "ServiceName": "Auth",
       "UpstreamPathTemplate": "/login",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -182,12 +195,13 @@
     {
       "DownstreamPathTemplate": "/api/Agents",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/Agents",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -195,12 +209,13 @@
     {
       "DownstreamPathTemplate": "/api/Agents/query?{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/Agents/query?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -208,12 +223,13 @@
     {
       "DownstreamPathTemplate": "/api/Agents/GetName?{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/Agents/GetName?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -221,12 +237,13 @@
     {
       "DownstreamPathTemplate": "/api/Agents/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/Agents/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -235,12 +252,13 @@
     {
       "DownstreamPathTemplate": "/api/Agents",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/Agents",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -251,12 +269,13 @@
     {
       "DownstreamPathTemplate": "/api/EndUsers",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/EndUsers",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -264,12 +283,13 @@
     {
       "DownstreamPathTemplate": "/api/EndUsers/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/EndUsers/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -277,12 +297,13 @@
     {
       "DownstreamPathTemplate": "/api/EndUsers/query",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/EndUsers/query",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -290,12 +311,13 @@
     {
       "DownstreamPathTemplate": "/api/EndUsers/GetName",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/EndUsers/GetName",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -304,12 +326,13 @@
     {
       "DownstreamPathTemplate": "/api/EndUsers",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/EndUsers",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -318,12 +341,13 @@
     {
       "DownstreamPathTemplate": "/api/SignUp",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/SignUp",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -331,12 +355,13 @@
     {
       "DownstreamPathTemplate": "/api/SignUp/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/SignUp/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
@@ -344,12 +369,13 @@
     {
       "DownstreamPathTemplate": "/api/SignUp",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/SignUp",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -358,18 +384,22 @@
     {
       "DownstreamPathTemplate": "/api/upload",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "35.221.125.153",
-          "Port": 8082
-        }
-      ],
+      // "DownstreamHostAndPorts": [
+      //   {
+      //     "Host": "35.221.125.153",
+      //     "Port": 8082
+      //   }
+      // ],
+      "ServiceName": "OnBoarding",
       "UpstreamPathTemplate": "/upload",
       "UpstreamHttpMethod": [ "Post" ]
     }
   ],
   "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId",
-    "AdministrationPath": "/administration"
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
   }
 }
