@@ -63,6 +63,7 @@ namespace ApiGateway
                     httpContext.Request.Path.ToString() != "/enduser"||
                     httpContext.Request.Path.ToString() != "/agents")
                 {
+                    httpContext.Response.Headers.Add("pATH", httpContext.Request.Path.ToString());
                     httpContext.Response.Headers.Add("error", "NotAuthorised");
                     httpContext.Response.StatusCode = 401;
                     throw new UnauthorizedAccessException();
