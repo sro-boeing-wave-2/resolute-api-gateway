@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 using CacheManager.Core;
 using Ocelot.Cache.CacheManager;
 using Microsoft.Extensions.Logging;
@@ -40,7 +41,7 @@ namespace ApiGateway
                          )
 
              );
-            services.AddOcelot(Configuration)
+            services.AddOcelot(Configuration).AddConsul()
                          .AddCacheManager(x => {
                              x.WithMicrosoftLogging(log =>
                              {
@@ -54,9 +55,9 @@ namespace ApiGateway
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
             {
-            app.UseCors("AllowSpecificOrigin");
-            app.UseMiddleware(typeof(ErrorHandler));
-            app.UseAuthentication();
+                app.UseCors("AllowSpecificOrigin");
+                // app.UseMiddleware(typeof(ErrorHandler));
+                // app.UseAuthentication();
 
 
             //app.Use(async (context, next) => {
@@ -88,7 +89,7 @@ namespace ApiGateway
             //    await next();
             //});
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+                loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 app.UseOcelot().Wait();
             }
         }

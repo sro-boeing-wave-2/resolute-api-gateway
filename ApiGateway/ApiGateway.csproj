@@ -11,8 +11,9 @@
   <ItemGroup>
     <PackageReference Include="ChilkatDnCore" Version="9.5.0.75" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Ocelot" Version="11.0.2" />
     <PackageReference Include="Ocelot.Cache.CacheManager" Version="0.1.0" />
-    <PackageReference Include="Stark.NewtonsoftJsonSerializer" Version="1.2.1" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="0.1.2" />
   </ItemGroup>
 
 </Project>
