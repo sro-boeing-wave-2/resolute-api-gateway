@@ -60,7 +60,7 @@ namespace ApiGateway
                 if (httpContext.Request.Path.ToString() != "/login" &&
                     httpContext.Request.Path.ToString() != "/upload" &&
                     httpContext.Request.Path.ToString() != "/signup" &&
-                    httpContext.Request.Path.ToString() != "/enduser"&&
+                    httpContext.Request.Path.ToString() != "/endusers"&&
                     httpContext.Request.Path.ToString() != "/agents")
                 {
                     
