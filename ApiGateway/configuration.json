@@ -94,7 +94,7 @@
     {
       "DownstreamPathTemplate": "/api/Auth/login",
       "DownstreamScheme": "http",
-      "ServiceName": "Auth",
+      "ServiceName": "auth",
       "UpstreamPathTemplate": "/login",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -194,6 +194,13 @@
       "DownstreamScheme": "http",
       "ServiceName": "On-Boarding",
       "UpstreamPathTemplate": "/upload",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/user/add",
+      "DownstreamScheme": "http",
+      "ServiceName": "auth",
+      "UpstreamPathTemplate": "/user/add",
       "UpstreamHttpMethod": [ "Post" ]
     }
   ],

@@ -75,9 +75,7 @@ namespace ApiGateway
             }
             else
             {
-                httpContext.Response.Headers.Add("error", "NotAuthorised");
-                httpContext.Response.StatusCode = 401;
-                throw new UnauthorizedAccessException();
+                await _next(httpContext);
             }
         }
        // Extension method used to add the middleware to the HTTP request pipeline.
