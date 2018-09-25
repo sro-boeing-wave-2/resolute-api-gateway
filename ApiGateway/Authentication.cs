@@ -55,7 +55,7 @@ namespace ApiGateway
                     }
                 }
             }
-            else if (httpContext.Request.Headers.ContainsKey("Access"))
+            else if (httpContext.Request.Headers["Access"].ToString() == "Allow_Service")
             {
                 await _next(httpContext);
             }
