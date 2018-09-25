@@ -27,9 +27,7 @@ namespace ApiGateway
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
                 string token = httpContext.Request.Headers["token"].ToString();
                 Console.WriteLine("Token - " + token);
-                
-                using (var client = new ConsulClient())
-                {
+                var client = new ConsulClient();
                     client.Config.Address = new Uri("35.221.125.153:8500");
                     var getPair = await client.KV.Get("publickey");
                     Console.WriteLine("public key - " + getPair);
@@ -53,12 +51,11 @@ namespace ApiGateway
                     }
                     else
                     {
-                        httpContext.Response.Headers.Add("error", "NotAuthorised");
+                        httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
                         httpContext.Response.StatusCode = 401;
                         throw new UnauthorizedAccessException();
 
                     }
-                }
             }
             else if (httpContext.Request.Headers["Access"].ToString() == "Allow_Service")
             {
@@ -73,7 +70,7 @@ namespace ApiGateway
                     httpContext.Request.Path.ToString() != "/agents")
                 {
 
-                    httpContext.Response.Headers.Add("error", "NotAuthorised");
+                    httpContext.Response.Headers.Add("error", "NotAuthorised - login phase");
                     httpContext.Response.StatusCode = 401;
                     throw new UnauthorizedAccessException();
                 }
