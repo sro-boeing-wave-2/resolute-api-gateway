@@ -26,6 +26,8 @@ namespace ApiGateway
                 glob.UnlockBundle("anything for 30-day trial");
                 Chilkat.Jwt jwt = new Chilkat.Jwt();
                 string token = httpContext.Request.Headers["token"].ToString();
+                Console.WriteLine("Token - " + token);
+                
                 using (var client = new ConsulClient())
                 {
                     client.Config.Address = new Uri("35.221.125.153:8500");
