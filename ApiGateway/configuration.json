@@ -106,6 +106,13 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
+      "DownstreamPathTemplate": "/api/Agents/count",
+      "DownstreamScheme": "http",
+      "ServiceName": "On-Boarding",
+      "UpstreamPathTemplate": "/Agents/count",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/Agents/query?{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "On-Boarding",
@@ -138,6 +145,13 @@
       "DownstreamScheme": "http",
       "ServiceName": "On-Boarding",
       "UpstreamPathTemplate": "/EndUsers",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/EndUsers/count",
+      "DownstreamScheme": "http",
+      "ServiceName": "On-Boarding",
+      "UpstreamPathTemplate": "/EndUsers/count",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
