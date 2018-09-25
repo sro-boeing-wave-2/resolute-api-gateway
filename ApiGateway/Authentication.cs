@@ -30,6 +30,9 @@ namespace ApiGateway
                 {
                     client.Config.Address = new Uri("35.221.125.153:8500");
                     var getPair = await client.KV.Get("publickey");
+                    Console.WriteLine("public key - " + getPair);
+                    Console.WriteLine("public key - " + getPair.Response.Value);
+                    Console.WriteLine("public key - " + Encoding.UTF8.GetString(getPair.Response.Value));
                     Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
                     rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
                     var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
