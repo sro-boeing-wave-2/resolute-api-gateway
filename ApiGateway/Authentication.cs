@@ -28,7 +28,7 @@ namespace ApiGateway
                 string token = httpContext.Request.Headers["token"].ToString();
                 Console.WriteLine("Token - " + token);
                 var client = new ConsulClient();
-                    client.Config.Address = new Uri("35.221.125.153:8500");
+                    client.Config.Address = new Uri("http://35.221.125.153:8500");
                     var getPair = await client.KV.Get("publickey");
                     Console.WriteLine("public key - " + getPair);
                     Console.WriteLine("public key - " + getPair.Response.Value);
