@@ -63,6 +63,20 @@
       "UpstreamPathTemplate": "/tickets/leaderboard",
       "UpstreamHttpMethod": [ "Get" ]
     },
+    {
+      "DownstreamPathTemplate": "/upload",
+      "DownstreamScheme": "http",
+      "ServiceName": "Intent-Trainer",
+      "UpstreamPathTemplate": "/upload",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/getIntent",
+      "DownstreamScheme": "http",
+      "ServiceName": "Ticket-Management",
+      "UpstreamPathTemplate": "/getIntent",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
 
     {
       "DownstreamPathTemplate": "/api/tickets/create",
