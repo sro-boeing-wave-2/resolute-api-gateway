@@ -57,6 +57,14 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
+      "DownstreamPathTemplate": "/api/tickets/leaderboard",
+      "DownstreamScheme": "http",
+      "ServiceName": "Ticket-Management",
+      "UpstreamPathTemplate": "/tickets/leaderboard",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    {
       "DownstreamPathTemplate": "/api/tickets/create",
       "DownstreamScheme": "http",
       "ServiceName": "Ticket-Management",
