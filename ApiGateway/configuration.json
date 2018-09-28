@@ -104,7 +104,7 @@
 
     // post ticket details
     {
-      "DownstreamPathTemplate": "/api/tickets/",
+      "DownstreamPathTemplate": "/api/tickets/create",
       "DownstreamScheme": "http",
       // "DownstreamHostAndPorts": [
       //   {
@@ -113,7 +113,7 @@
       //   }
       // ],
       "ServiceName": "Ticket-Management",
-      "UpstreamPathTemplate": "/tickets",
+      "UpstreamPathTemplate": "/tickets/create",
       "UpstreamHttpMethod": [ "Post" ]
     },
     // put comment details
