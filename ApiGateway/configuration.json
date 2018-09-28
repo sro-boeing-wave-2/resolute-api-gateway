@@ -36,10 +36,10 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/api/tickets/status/{status}",
+      "DownstreamPathTemplate": "/api/tickets/assignagent/{id}",
       "DownstreamScheme": "http",
       "ServiceName": "Ticket-Management",
-      "UpstreamPathTemplate": "/tickets/status/{status}",
+      "UpstreamPathTemplate": "/tickets/assignagent/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
