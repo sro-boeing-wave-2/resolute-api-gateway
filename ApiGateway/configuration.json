@@ -64,13 +64,19 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/getIntent",
+      "DownstreamPathTemplate": "/intent/getIntent",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
-      "UpstreamPathTemplate": "/getIntent",
+      "ServiceName": "Intent-Trainer",
+      "UpstreamPathTemplate": "/intent/getIntent",
       "UpstreamHttpMethod": [ "Get" ]
     },
-
+    {
+      "DownstreamPathTemplate": "/intent/upload",
+      "DownstreamScheme": "http",
+      "ServiceName": "Intent-Trainer",
+      "UpstreamPathTemplate": "/intent/upload",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
     {
       "DownstreamPathTemplate": "/api/tickets/create",
       "DownstreamScheme": "http",
