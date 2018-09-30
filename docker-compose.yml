@@ -17,4 +17,4 @@ services:
     network_mode: host
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
-    command: -internal consul://localhost:8500
+    command: -internal consul://0.0.0.0:8500
