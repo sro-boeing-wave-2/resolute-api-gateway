@@ -49,18 +49,13 @@ namespace ApiGateway
                     httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
                     httpContext.Request.Headers.Add("email", decodedheaders.Email);
                     httpContext.Request.Headers.Remove("token");
-                    //httpContext.Response.Headers.Add("agentid", decodedheaders.Agentid.ToString());
-                    //httpContext.Response.Headers.Add("name", decodedheaders.Name);
-                    //httpContext.Response.Headers.Add("profileimageurl", decodedheaders.Profileimageurl.ToString());
-                    //httpContext.Response.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
-                    //httpContext.Response.Headers.Add("organisationname", decodedheaders.Organisationname.ToString());
-                    //httpContext.Response.Headers.Add("email", decodedheaders.Email.ToString());
-
+                    Console.WriteLine("Decoded Token: " + decodedheaders.Email);
                     httpContext.Response.Headers.Add("Check", "successfully converted");
                     await _next(httpContext);
                 }
                 else
                 {
+                    Console.WriteLine("Error in token verification");
                     httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
                     httpContext.Response.StatusCode = 401;
                     throw new UnauthorizedAccessException();
@@ -68,6 +63,7 @@ namespace ApiGateway
             }
             else if (httpContext.Request.Headers["Access"].ToString() == "Allow_Service")
             {
+                Console.WriteLine("WhiteListed Call Header");
                 await _next(httpContext);
             }
             else
@@ -78,6 +74,7 @@ namespace ApiGateway
                     httpContext.Request.Path.ToString() != "/endusers" &&
                     httpContext.Request.Path.ToString() != "/agents")
                 {
+                    Console.WriteLine("Unauthorised");
 
                     httpContext.Response.Headers.Add("error", "NotAuthorised - login phase");
                     httpContext.Response.StatusCode = 401;
