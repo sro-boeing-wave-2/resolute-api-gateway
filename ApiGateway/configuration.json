@@ -267,10 +267,31 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "DownstreamPathTemplate": "/ChatHub",
+      "DownstreamScheme": "http",
+      "ServiceName": "rtm",
+      "UpstreamPathTemplate": "/chathub",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "DownstreamPathTemplate": "/",
       "DownstreamScheme": "http",
       "ServiceName": "chat-ui",
       "UpstreamPathTemplate": "/chat",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/solution",
+      "DownstreamScheme": "http",
+      "ServiceName": "solution-manager",
+      "UpstreamPathTemplate": "/solution",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/solution/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "solution-manager",
+      "UpstreamPathTemplate": "/solution/{everything}",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ],
