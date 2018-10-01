@@ -31,7 +31,7 @@ namespace ApiGateway
                 var client = new ConsulClient();
                 string url = Constants.BASE_URL + ":" + Constants.CONSUL_PORT;
                 Console.WriteLine(url);
-                client.Config.Address = new Uri("http://35.221.88.74:8500");
+                client.Config.Address = new Uri(url);
                 var getPair = await client.KV.Get("publickey");
                 Console.WriteLine("public key - " + getPair);
                 Console.WriteLine("public key - " + getPair.Response.Value);
