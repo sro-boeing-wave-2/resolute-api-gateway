@@ -44,7 +44,7 @@ namespace ApiGateway
                     ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
                     httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
                     httpContext.Request.Headers.Add("name", decodedheaders.Name);
-                    httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
+                    //httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
                     httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
                     httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
                     httpContext.Request.Headers.Add("email", decodedheaders.Email);

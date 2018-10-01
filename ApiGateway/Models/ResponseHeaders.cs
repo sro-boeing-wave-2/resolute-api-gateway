@@ -9,7 +9,7 @@ namespace ApiGateway.Models
     {
         long agentid;
         string name;
-        string profileimageurl;
+       // string profileimageurl;
         long organisationid;
         
         string organisationname;
@@ -17,7 +17,7 @@ namespace ApiGateway.Models
 
         public long Agentid { get => agentid; set => agentid = value; }
         public string Name { get => name; set => name = value; }
-        public string Profileimageurl { get => profileimageurl; set => profileimageurl = value; }
+        //public string Profileimageurl { get => profileimageurl; set => profileimageurl = value; }
         public long Organisationid { get => organisationid; set => organisationid = value; }
         
         public string Organisationname { get => organisationname; set => organisationname = value; }
