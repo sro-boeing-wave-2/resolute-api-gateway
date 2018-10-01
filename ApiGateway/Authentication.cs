@@ -44,17 +44,17 @@ namespace ApiGateway
                     ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
                     httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
                     httpContext.Request.Headers.Add("name", decodedheaders.Name);
-                    httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl.ToString());
+                    httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
                     httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
-                    httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname.ToString());
-                    httpContext.Request.Headers.Add("email", decodedheaders.Email.ToString());
+                    httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
+                    httpContext.Request.Headers.Add("email", decodedheaders.Email);
                     httpContext.Request.Headers.Remove("token");
-                    httpContext.Response.Headers.Add("agentid", decodedheaders.Agentid.ToString());
-                    httpContext.Response.Headers.Add("name", decodedheaders.Name);
-                    httpContext.Response.Headers.Add("profileimageurl", decodedheaders.Profileimageurl.ToString());
-                    httpContext.Response.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
-                    httpContext.Response.Headers.Add("organisationname", decodedheaders.Organisationname.ToString());
-                    httpContext.Response.Headers.Add("email", decodedheaders.Email.ToString());
+                    //httpContext.Response.Headers.Add("agentid", decodedheaders.Agentid.ToString());
+                    //httpContext.Response.Headers.Add("name", decodedheaders.Name);
+                    //httpContext.Response.Headers.Add("profileimageurl", decodedheaders.Profileimageurl.ToString());
+                    //httpContext.Response.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
+                    //httpContext.Response.Headers.Add("organisationname", decodedheaders.Organisationname.ToString());
+                    //httpContext.Response.Headers.Add("email", decodedheaders.Email.ToString());
 
                     httpContext.Response.Headers.Add("Check", "successfully converted");
                     await _next(httpContext);
