@@ -50,7 +50,6 @@ namespace ApiGateway
                     httpContext.Request.Headers.Add("email", decodedheaders.Email);
                     httpContext.Request.Headers.Remove("token");
                     Console.WriteLine("Decoded Token: " + decodedheaders.Email);
-                    httpContext.Response.Headers.Add("Check", "successfully converted");
                     await _next(httpContext);
                 }
                 else
