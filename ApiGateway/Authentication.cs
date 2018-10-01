@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Consul;
 using Microsoft.AspNetCore.Builder;
 using ApiGateway.Models;
+using ApiGateway.variables;
 
 namespace ApiGateway
 {
@@ -28,34 +29,34 @@ namespace ApiGateway
                 string token = httpContext.Request.Headers["token"].ToString();
                 Console.WriteLine("Token - " + token);
                 var client = new ConsulClient();
-                    client.Config.Address = new Uri("http://35.221.76.107:8500");
-                    var getPair = await client.KV.Get("publickey");
-                    Console.WriteLine("public key - " + getPair);
-                    Console.WriteLine("public key - " + getPair.Response.Value);
-                    Console.WriteLine("public key - " + Encoding.UTF8.GetString(getPair.Response.Value));
-                    Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
-                    rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
-                    var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
-                    if (isTokenVerified)
-                    {
-                        ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
-                        httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
-                        httpContext.Request.Headers.Add("name", "decodedheaders.name");
-                        httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
-                        httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
-                        httpContext.Request.Headers.Add("departmentname", decodedheaders.Departmentname);
-                        httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
-                        httpContext.Request.Headers.Add("email", decodedheaders.Email);
-                        httpContext.Request.Headers.Remove("token");
-                        await _next(httpContext);
-                    }
-                    else
-                    {
-                        httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
-                        httpContext.Response.StatusCode = 401;
-                        throw new UnauthorizedAccessException();
-
-                    }
+                string url = Constants.BASE_URL + ":" + Constants.CONSUL_PORT;
+                client.Config.Address = new Uri(url);
+                var getPair = await client.KV.Get("publickey");
+                Console.WriteLine("public key - " + getPair);
+                Console.WriteLine("public key - " + getPair.Response.Value);
+                Console.WriteLine("public key - " + Encoding.UTF8.GetString(getPair.Response.Value));
+                Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
+                rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
+                var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
+                if (isTokenVerified)
+                {
+                    ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
+                    httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
+                    httpContext.Request.Headers.Add("name", "decodedheaders.name");
+                    httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
+                    httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
+                    httpContext.Request.Headers.Add("departmentname", decodedheaders.Departmentname);
+                    httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
+                    httpContext.Request.Headers.Add("email", decodedheaders.Email);
+                    httpContext.Request.Headers.Remove("token");
+                    await _next(httpContext);
+                }
+                else
+                {
+                    httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
+                    httpContext.Response.StatusCode = 401;
+                    throw new UnauthorizedAccessException();
+                }
             }
             else if (httpContext.Request.Headers["Access"].ToString() == "Allow_Service")
             {

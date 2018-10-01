@@ -3,112 +3,112 @@
     {
       "DownstreamPathTemplate": "/api/tickets",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/values",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/values",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/analytics",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/analytics",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/detail/{id}",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/detail/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/count",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/count",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/assignagent/{id}",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/assignagent/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/filter?{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/filter?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/analytics/update",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/analytics/update",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/leaderboard",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/leaderboard",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/intent/getIntent",
       "DownstreamScheme": "http",
-      "ServiceName": "Intent-Trainer",
+      "ServiceName": "intent-trainer",
       "UpstreamPathTemplate": "/intent/getIntent",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/intent/upload",
       "DownstreamScheme": "http",
-      "ServiceName": "Intent-Trainer",
+      "ServiceName": "intent-trainer",
       "UpstreamPathTemplate": "/intent/upload",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/create",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/create",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/updatecomment",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/updatecomment",
       "UpstreamHttpMethod": [ "Put" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/{id}",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/{id}",
       "UpstreamHttpMethod": [ "Put" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/status",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/status",
       "UpstreamHttpMethod": [ "Put" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/priority",
       "DownstreamScheme": "http",
-      "ServiceName": "Ticket-Management",
+      "ServiceName": "ticket-management",
       "UpstreamPathTemplate": "/tickets/priority",
       "UpstreamHttpMethod": [ "Put" ]
     },
@@ -122,112 +122,112 @@
     {
       "DownstreamPathTemplate": "/api/Agents",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/Agents",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Agents/count",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/Agents/count",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Agents/query?{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/Agents/query?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Agents/GetName?{everything}",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/Agents/GetName?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Agents/{id}",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/Agents/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Agents",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/Agents",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/EndUsers",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/EndUsers",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/EndUsers/count",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/EndUsers/count",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/EndUsers/{id}",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/EndUsers/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/EndUsers/query",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/EndUsers/query",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/EndUsers/GetName",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/EndUsers/GetName",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/EndUsers",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/EndUsers",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/SignUp",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/SignUp",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/SignUp/{id}",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/SignUp/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/SignUp",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/SignUp",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/upload",
       "DownstreamScheme": "http",
-      "ServiceName": "On-Boarding",
+      "ServiceName": "onboarding",
       "UpstreamPathTemplate": "/upload",
       "UpstreamHttpMethod": [ "Post" ]
     },
@@ -239,10 +239,38 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/{catchAll}",
+      "DownstreamPathTemplate": "/console",
       "DownstreamScheme": "http",
-      "ServiceName": "Consoleui",
-      "UpstreamPathTemplate": "/{catchAll}",
+      "ServiceName": "console-ui",
+      "UpstreamPathTemplate": "/console",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/console/{catchAll}",
+      "DownstreamScheme": "http",
+      "ServiceName": "console-ui",
+      "UpstreamPathTemplate": "/console/{catchAll}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/rtm",
+      "DownstreamScheme": "http",
+      "ServiceName": "rtm-ui",
+      "UpstreamPathTemplate": "/rtm",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/rtm/{catchAll}",
+      "DownstreamScheme": "http",
+      "ServiceName": "rtm-ui",
+      "UpstreamPathTemplate": "/rtm/{catchAll}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "http",
+      "ServiceName": "chat-ui",
+      "UpstreamPathTemplate": "/chat",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ],

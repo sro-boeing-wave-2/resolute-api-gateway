@@ -3,6 +3,8 @@ services:
   web:
     build: ./ApiGateway
     network_mode: host
+    volumes:
+        - "/machine_config:/app/machine_config"
     depends_on: 
       - consul
       - registrator

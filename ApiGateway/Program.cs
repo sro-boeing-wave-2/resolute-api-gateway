@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using DotNetEnv;
 
 namespace ApiGateway
 {
@@ -7,6 +8,7 @@ namespace ApiGateway
     {
         public static void Main(string[] args)
         {
+            Env.Load("./machine_config/.env");
             CreateWebHostBuilder(args).Build().Run();
         }
 
