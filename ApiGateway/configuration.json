@@ -253,17 +253,10 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/ChatHub/{catchAll}",
+      "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "ws",
       "ServiceName": "rtm",
-      "UpstreamPathTemplate": "/chathub/{catchAll}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
-    },
-    {
-      "DownstreamPathTemplate": "/ChatHub",
-      "DownstreamScheme": "ws",
-      "ServiceName": "rtm",
-      "UpstreamPathTemplate": "/chathub",
+      "UpstreamPathTemplate": "/rtm/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
     {
