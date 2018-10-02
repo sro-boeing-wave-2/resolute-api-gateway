@@ -74,7 +74,8 @@ namespace ApiGateway
                     httpContext.Request.Path.ToString() != "/signup" &&
                     httpContext.Request.Path.ToString() != "/endusers" &&
                     httpContext.Request.Path.ToString() != "/agents" && 
-                    !httpContext.Request.Path.ToString().Contains("/chat"))
+                    !httpContext.Request.Path.ToString().Contains("/chat") &&
+                    !httpContext.Request.Path.ToString().Contains("ChatHub")) 
                 {
                     Console.WriteLine("Unauthorised");
 
