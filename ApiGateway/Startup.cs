@@ -59,6 +59,7 @@ namespace ApiGateway
             app.UseMiddleware(typeof(ErrorHandler));
             app.UseAuthentication();
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            app.UseWebSockets();
             app.UseOcelot().Wait();
         }
     }
