@@ -39,6 +39,7 @@ namespace ApiGateway
                 Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
                 rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
                 var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
+                Console.WriteLine("Token Verification result: " + isTokenVerified);
                 if (isTokenVerified)
                 {
                     ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
