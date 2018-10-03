@@ -113,6 +113,13 @@
       "UpstreamHttpMethod": [ "Put" ]
     },
     {
+      "DownstreamPathTemplate": "/api/tickets/{id}/feedback",
+      "DownstreamScheme": "http",
+      "ServiceName": "ticket-management",
+      "UpstreamPathTemplate": "/tickets/{id}/feedback",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/Auth/login",
       "DownstreamScheme": "http",
       "ServiceName": "auth",
