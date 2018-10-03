@@ -75,7 +75,7 @@
       "DownstreamScheme": "http",
       "ServiceName": "intent-trainer",
       "UpstreamPathTemplate": "/intent/upload",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/tickets/create",
