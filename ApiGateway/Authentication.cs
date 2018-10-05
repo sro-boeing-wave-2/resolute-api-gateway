@@ -20,51 +20,66 @@ namespace ApiGateway
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
-            if (httpContext.Request.Headers.ContainsKey("token"))
+            if (httpContext.Request.Path.ToString().Contains("/tickets") ||
+                httpContext.Request.Path.ToString() != "/Agents" ||
+                httpContext.Request.Path.ToString() != "/EndUser" ||
+                httpContext.Request.Path.ToString() != "/SignUp" ||
+                httpContext.Request.Path.ToString() != "/EndUser" ||
+                httpContext.Request.Path.ToString().Contains("/user") ||
+                httpContext.Request.Path.ToString().Contains("/intent") ||
+                httpContext.Request.Path.ToString().Contains("/solution")
+                )
             {
-                // string publickey = "<RSAPublicKey><Modulus>5QooqrD6rqxdXTH7XxLYm0rF2uLFTZZAqv1lMcRvNEr7kmvkNEN+NH6soK1/1v5DI6xHwKAHKyi323XrjH7jIrkjHl5RF09nicutCvL0cFiwSCTfWzmIwbAI3z4J09b2lzml44IautLjk18LnRM4fZbpZdzmkd/UmvgOzREvxUU=</Modulus><Exponent>AQAB</Exponent></RSAPublicKey>";
-                Chilkat.Global glob = new Chilkat.Global();
-                glob.UnlockBundle("anything for 30-day trial");
-                Chilkat.Jwt jwt = new Chilkat.Jwt();
-                string token = httpContext.Request.Headers["token"].ToString();
-                token = token.Replace("\"", "");
-                Console.WriteLine("Token - " + token);
-                var client = new ConsulClient();
-                string url = Constants.BASE_URL + ":" + Constants.CONSUL_PORT;
-                Console.WriteLine(url);
-                client.Config.Address = new Uri(url);
-                var getPair = await client.KV.Get("publickey");
-                Console.WriteLine("public key - " + getPair);
-                Console.WriteLine("public key - " + getPair.Response.Value);
-                Console.WriteLine("public key - " + Encoding.UTF8.GetString(getPair.Response.Value));
-                Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
-                rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
-                var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
-                Console.WriteLine("Token Verification result: " + isTokenVerified);
-                if (isTokenVerified)
+                if (httpContext.Request.Headers.ContainsKey("token"))
                 {
-                    ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
-                    httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
-                    httpContext.Request.Headers.Add("name", decodedheaders.Name);
-                    //httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
-                    httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
-                    httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
-                    httpContext.Request.Headers.Add("email", decodedheaders.Email);
-                    httpContext.Request.Headers.Remove("token");
-                    Console.WriteLine("Decoded Token: " + decodedheaders.Email);
+                    // string publickey = "<RSAPublicKey><Modulus>5QooqrD6rqxdXTH7XxLYm0rF2uLFTZZAqv1lMcRvNEr7kmvkNEN+NH6soK1/1v5DI6xHwKAHKyi323XrjH7jIrkjHl5RF09nicutCvL0cFiwSCTfWzmIwbAI3z4J09b2lzml44IautLjk18LnRM4fZbpZdzmkd/UmvgOzREvxUU=</Modulus><Exponent>AQAB</Exponent></RSAPublicKey>";
+                    Chilkat.Global glob = new Chilkat.Global();
+                    glob.UnlockBundle("anything for 30-day trial");
+                    Chilkat.Jwt jwt = new Chilkat.Jwt();
+                    string token = httpContext.Request.Headers["token"].ToString();
+                    token = token.Replace("\"", "");
+                    Console.WriteLine("Token - " + token);
+                    var client = new ConsulClient();
+                    string url = Constants.BASE_URL + ":" + Constants.CONSUL_PORT;
+                    Console.WriteLine(url);
+                    client.Config.Address = new Uri(url);
+                    var getPair = await client.KV.Get("publickey");
+                    Console.WriteLine("public key - " + getPair);
+                    Console.WriteLine("public key - " + getPair.Response.Value);
+                    Console.WriteLine("public key - " + Encoding.UTF8.GetString(getPair.Response.Value));
+                    Chilkat.Rsa rsaPublicKey = new Chilkat.Rsa();
+                    rsaPublicKey.ImportPublicKey(Encoding.UTF8.GetString(getPair.Response.Value));
+                    var isTokenVerified = jwt.VerifyJwtPk(token, rsaPublicKey.ExportPublicKeyObj());
+                    Console.WriteLine("Token Verification result: " + isTokenVerified);
+                    if (isTokenVerified)
+                    {
+                        ResponseHeaders decodedheaders = JsonConvert.DeserializeObject<ResponseHeaders>(jwt.GetPayload(httpContext.Request.Headers["token"]));
+                        httpContext.Request.Headers.Add("agentid", decodedheaders.Agentid.ToString());
+                        httpContext.Request.Headers.Add("name", decodedheaders.Name);
+                        //httpContext.Request.Headers.Add("profileimageurl", decodedheaders.Profileimageurl);
+                        httpContext.Request.Headers.Add("departmentid", decodedheaders.Organisationid.ToString());
+                        httpContext.Request.Headers.Add("organisationname", decodedheaders.Organisationname);
+                        httpContext.Request.Headers.Add("email", decodedheaders.Email);
+                        httpContext.Request.Headers.Remove("token");
+                        Console.WriteLine("Decoded Token: " + decodedheaders.Email);
+                        await _next(httpContext);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error in token verification");
+                        httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
+                        httpContext.Response.StatusCode = 401;
+                        throw new UnauthorizedAccessException();
+                    }
+                }
+                else if (httpContext.Request.Headers["Access"].ToString() == "Allow_Service")
+                {
+                    Console.WriteLine("WhiteListed Call Header");
                     await _next(httpContext);
                 }
-                else
-                {
-                    Console.WriteLine("Error in token verification");
-                    httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
-                    httpContext.Response.StatusCode = 401;
-                    throw new UnauthorizedAccessException();
-                }
             }
-            else if (httpContext.Request.Headers["Access"].ToString() == "Allow_Service")
+            else
             {
-                Console.WriteLine("WhiteListed Call Header");
                 await _next(httpContext);
             }
             //else
