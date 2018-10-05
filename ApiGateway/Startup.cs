@@ -42,6 +42,7 @@ namespace ApiGateway
                          )
 
              );
+            services.AddHttpContextAccessor();
             services.AddOcelot(Configuration).AddConsul()
                          .AddCacheManager(x =>
                          {
@@ -54,18 +55,18 @@ namespace ApiGateway
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, HttpContext httpContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IHttpContextAccessor httpContext)
         {
             app.UseCors("AllowSpecificOrigin");
             app.UseMiddleware(typeof(ErrorHandler));
-            if (httpContext.Request.Path.ToString().Contains("/tickets") ||             
-                httpContext.Request.Path.ToString() != "/Agents"         ||
-                httpContext.Request.Path.ToString() != "/EndUser"        ||
-                httpContext.Request.Path.ToString() != "/SignUp"         ||               
-                httpContext.Request.Path.ToString() != "/EndUser"        ||
-                httpContext.Request.Path.ToString().Contains("/user")    ||
-                httpContext.Request.Path.ToString().Contains("/intent")  ||
-                httpContext.Request.Path.ToString().Contains("/solution")
+            if (httpContext.HttpContext.Request.Path.ToString().Contains("/tickets") ||             
+                httpContext.HttpContext.Request.Path.ToString() != "/Agents"         ||
+                httpContext.HttpContext.Request.Path.ToString() != "/EndUser"        ||
+                httpContext.HttpContext.Request.Path.ToString() != "/SignUp"         ||               
+                httpContext.HttpContext.Request.Path.ToString() != "/EndUser"        ||
+                httpContext.HttpContext.Request.Path.ToString().Contains("/user")    ||
+                httpContext.HttpContext.Request.Path.ToString().Contains("/intent")  ||
+                httpContext.HttpContext.Request.Path.ToString().Contains("/solution")
                 )
             {
                 app.UseAuthentication();
