@@ -246,10 +246,17 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/console",
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
       "ServiceName": "console-ui",
-      "UpstreamPathTemplate": "/console",
+      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "http",
+      "ServiceName": "console-ui",
+      "UpstreamPathTemplate": "/",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
