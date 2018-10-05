@@ -261,7 +261,7 @@
     },
     {
       "DownstreamPathTemplate": "/{catchAll}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "ws",
       "ServiceName": "rtm",
       "UpstreamPathTemplate": "/rtm/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
