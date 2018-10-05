@@ -12,6 +12,7 @@ using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBui
 using System;
 using ApiGateway.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace ApiGateway
 {
@@ -53,11 +54,22 @@ namespace ApiGateway
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, HttpContext httpContext)
         {
             app.UseCors("AllowSpecificOrigin");
             app.UseMiddleware(typeof(ErrorHandler));
-            app.UseAuthentication();
+            if (httpContext.Request.Path.ToString().Contains("/tickets") ||             
+                httpContext.Request.Path.ToString() != "/Agents"         ||
+                httpContext.Request.Path.ToString() != "/EndUser"        ||
+                httpContext.Request.Path.ToString() != "/SignUp"         ||               
+                httpContext.Request.Path.ToString() != "/EndUser"        ||
+                httpContext.Request.Path.ToString().Contains("/user")    ||
+                httpContext.Request.Path.ToString().Contains("/intent")  ||
+                httpContext.Request.Path.ToString().Contains("/solution")
+                )
+            {
+                app.UseAuthentication();
+            }
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             app.UseWebSockets();
             app.UseOcelot().Wait();

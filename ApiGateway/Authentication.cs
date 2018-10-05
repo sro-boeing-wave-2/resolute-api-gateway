@@ -67,26 +67,26 @@ namespace ApiGateway
                 Console.WriteLine("WhiteListed Call Header");
                 await _next(httpContext);
             }
-            else
-            {
-                if(httpContext.Request.Path.ToString() != "/login" &&
-                    httpContext.Request.Path.ToString() != "/upload" &&
-                    httpContext.Request.Path.ToString() != "/signup" &&
-                    httpContext.Request.Path.ToString() != "/endusers" &&
-                    httpContext.Request.Path.ToString() != "/agents" && 
-                    !httpContext.Request.Path.ToString().Contains("/chat") &&
-                    !httpContext.Request.Path.ToString().Contains("/rtm") &&
-                    !httpContext.Request.Path.ToString().Contains("ChatHub")&&
-                    !httpContext.Request.Path.ToString().Contains("/console")) 
-                {
-                    Console.WriteLine("Unauthorised");
+            //else
+            //{
+            //    if(httpContext.Request.Path.ToString() != "/login" &&
+            //        httpContext.Request.Path.ToString() != "/upload" &&
+            //        httpContext.Request.Path.ToString() != "/signup" &&
+            //        httpContext.Request.Path.ToString() != "/endusers" &&
+            //        httpContext.Request.Path.ToString() != "/agents" && 
+            //        !httpContext.Request.Path.ToString().Contains("/chat") &&
+            //        !httpContext.Request.Path.ToString().Contains("/rtm") &&
+            //        !httpContext.Request.Path.ToString().Contains("ChatHub")&&
+            //        !httpContext.Request.Path.ToString().Contains("/console")) 
+            //    {
+            //        Console.WriteLine("Unauthorised");
 
-                    httpContext.Response.Headers.Add("error", "NotAuthorised - login phase");
-                    httpContext.Response.StatusCode = 401;
-                    throw new UnauthorizedAccessException();
-                }
-                await _next(httpContext);
-            }
+            //        httpContext.Response.Headers.Add("error", "NotAuthorised - login phase");
+            //        httpContext.Response.StatusCode = 401;
+            //        throw new UnauthorizedAccessException();
+            //    }
+            //    await _next(httpContext);
+            //}
            
         }
        // Extension method used to add the middleware to the HTTP request pipeline.
