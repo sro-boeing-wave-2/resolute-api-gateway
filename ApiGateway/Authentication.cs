@@ -21,12 +21,11 @@ namespace ApiGateway
         public async Task InvokeAsync(HttpContext httpContext)
         {
             if (httpContext.Request.Path.ToString().Contains("/tickets") ||
-                httpContext.Request.Path.ToString() != "/Agents" ||
-                httpContext.Request.Path.ToString() != "/EndUser" ||
-                httpContext.Request.Path.ToString() != "/SignUp" ||
-                httpContext.Request.Path.ToString() != "/EndUser" ||
-                httpContext.Request.Path.ToString().Contains("/user") ||
-                httpContext.Request.Path.ToString().Contains("/intent") ||
+                (httpContext.Request.Path.ToString().Contains("/Agents") && httpContext.Request.Path.ToString() != "/Agents")  ||
+                (httpContext.Request.Path.ToString().Contains("/SignUp") && httpContext.Request.Path.ToString() != "/SignUp" ) ||
+                (httpContext.Request.Path.ToString().Contains("/EndUser") && httpContext.Request.Path.ToString() != "/EndUser")||
+                httpContext.Request.Path.ToString().Contains("/user")    ||
+                httpContext.Request.Path.ToString().Contains("/intent")  ||
                 httpContext.Request.Path.ToString().Contains("/solution")
                 )
             {
@@ -78,6 +77,7 @@ namespace ApiGateway
                     await _next(httpContext);
                 }
             }
+            
             else
             {
                 await _next(httpContext);
