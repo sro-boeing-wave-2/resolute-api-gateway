@@ -76,6 +76,13 @@ namespace ApiGateway
                     Console.WriteLine("WhiteListed Call Header");
                     await _next(httpContext);
                 }
+                else
+                {
+                    Console.WriteLine("Error in token verification");
+                    httpContext.Response.Headers.Add("error", "NotAuthorised - token phase");
+                    httpContext.Response.StatusCode = 401;
+                    throw new UnauthorizedAccessException();
+                }
             }
             
             else
