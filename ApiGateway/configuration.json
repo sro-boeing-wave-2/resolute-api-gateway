@@ -281,13 +281,6 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
     {
-      "DownstreamPathTemplate": "/",
-      "DownstreamScheme": "ws",
-      "ServiceName": "notification-service",
-      "UpstreamPathTemplate": "/notification",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
-    },
-    {
       "DownstreamPathTemplate": "/chat",
       "DownstreamScheme": "http",
       "ServiceName": "chat-ui",
